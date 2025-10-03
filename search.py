@@ -85,7 +85,7 @@ location_translations = {
 
 
 
-def track_ems_package(tracking_number,p):
+def track_ems_package(tracking_number):
     base_url = "https://www.ems.dz/track/index.php"
     params = {"icd": tracking_number}
     
@@ -102,21 +102,13 @@ def track_ems_package(tracking_number,p):
         "Sec-Fetch-User": "?1",
         "Upgrade-Insecure-Requests": "1",
     }
-    
-    # Get a working proxy
-    proxy = p
-    proxies_config = {
-        'http': f'http://{proxy}',
-        'https': f'http://{proxy}'
-    } if proxy else None
-    
+   
     try:
-        # Make the GET request with headers and proxy
+        # Make the GET request with headers
         response = requests.get(
             base_url,
             params=params,
             headers=headers,
-            proxies=proxies_config,
             timeout=10
         )
         

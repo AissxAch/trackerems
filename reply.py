@@ -3,8 +3,8 @@ from info import *
 from search import *
 
 
-def reply_mg(m,p):
-    result = track_ems_package(m.text.strip(),p)
+def reply_mg(m):
+    result = track_ems_package(m.text.strip())
     if "events" in result:
         bot.send_message(m.chat.id, f"\nتم العثور على {result.get('count', 0)} حدث تتبع لرقم {result['tracking_number']}:")
         for i, event in enumerate(result["events"], 1):
